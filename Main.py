@@ -67,6 +67,7 @@ def KartyGracza():
         Gracz1.append(y)
         Talia2.append(y)
         Talia.remove(y)
+        print(i + 1, end=") ")
         y.print()
 def KartyKomputera():
     print("Reka komputera")
@@ -76,7 +77,8 @@ def KartyKomputera():
         GraczCPU.append(z)
         Talia2.append(z)
         Talia.remove(z)
-        z.print()
+        z.print
+
 
 def PierwszaKarta():
     x = random.randint(13,37)
@@ -86,6 +88,7 @@ def PierwszaKarta():
     print("Pierwsza karta to: ")
     y.print()
 
+
 PierwszaKarta()
 KartyGracza()
 print(Gracz1)
@@ -93,8 +96,7 @@ KartyKomputera()
 print(GraczCPU)
 print(Talia2)
 
-
-
-
+Wybor = int(input('Wpisz numer karty:'))
+Karta = Gracz1[Wybor-1]
 
 
