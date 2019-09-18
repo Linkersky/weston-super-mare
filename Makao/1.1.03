@@ -1,0 +1,198 @@
+from CardFun import *
+import random
+
+################################## KARTY W TALII #####################################
+dwaPik = DwaP('pik', 2)
+dwaKaro = DwaKa('karo', 2)
+dwaKier = DwaKi('kier', 2)
+dwaTrefl = DwaT('trefl', 2)
+trzyKier = TrzyKi('kier', '3')
+trzyTrefl = TrzyT('trefl', '3')
+trzyKaro = TrzyKa('karo', '3')
+trzyPik = TrzyP('pik', '3')
+czteryTrefl = CzteryT('trefl', '4')
+czteryKier = CzteryKi('kier', '4')
+czteryKaro = CzteryKa('karo', '4')
+czteryPik = CzteryP('pik', '4')
+piecTrefl = PiecT('trefl', '5')
+piecKier =  PiecKi('kier', '5')
+piecKaro = PiecKa('karo', '5')
+piecPik =PiecP('pik', '5')
+szescPik = SzescP('pik', '6')
+szescTrefl = SzescT('trefl', '6')
+szescKaro = SzescKa('karo', '6')
+szescKier = SzescKi('kier', '6')
+siedemPik = SiedemP('pik', '7')
+siedemTrefl = SiedemT('trefl', '7')
+siedemKaro = SiedemKa('karo', '7')
+siedemKier = SiedemKi('kier', '7')
+osiemKier = OsiemKi('kier', '8')
+osiemTrefl = OsiemT('trefl', '8')
+osiemKaro = OsiemKa('karo', '8')
+osiemPik = OsiemP('pik', '8')
+dziewiecPik = DziewiecP('pik', '9')
+dziewiecKier = DziewiecKi('kier', '9')
+dziewiecKaro = DziewiecKa('karo', '9')
+dziewiecTrefl = DziewiecT('trefl', '9')
+dziesiecKier = DziesiecKi('kier', '10')
+dziesiecTrefl = DziesiecT('trefl', '10')
+dziesiecKaro = DziesiecKa('karo', '10')
+dziesiecPik = DziesiecP('pik', '10')
+waletKier = WaletKi('kier', 'W')
+waletKaro = WaletKa('karo', 'W')
+waletPik = WaletP('pik', 'W')
+waletTrefl = WaletT('trefl', 'W')
+damaPik = DamaP('pik', 'D')
+damaKier = DamaKi('kier', 'D')
+damaKaro = DamaKa('karo', 'D')
+damaTrefl = DamaT('trefl', 'D')
+krolTrefl = KrolOFFt('trefl', 'K')
+krolKaro = KrolOFFk('karo', 'K')
+krolKier = KrolONk('kier', 'K')
+krolPik = KrolONp('pik', 'K')
+asTrefl = AsT('trefl', 'A')
+asPik = AsP('pik', 'A')
+asKaro = AsKa('karo', 'A')
+asKier = AsKi('kier', 'A')
+#################################################################################
+Talia = [dwaKaro, dwaKier,dwaPik,dwaTrefl,trzyKaro,trzyKier,trzyPik,trzyTrefl,czteryKaro,czteryKier,czteryPik,czteryTrefl,piecKaro,piecKier,piecPik,piecTrefl,szescKaro,szescKier,szescPik,szescTrefl,siedemKaro,siedemKier,siedemPik,siedemTrefl,osiemKaro,osiemKier,osiemPik,osiemTrefl,dziewiecKaro,dziewiecKier,dziewiecPik,dziewiecTrefl,dziesiecKaro,dziesiecKier,dziesiecPik,dziesiecTrefl,waletKaro,waletKier,waletPik,waletTrefl,damaTrefl,damaPik,damaKier,damaKaro,krolKaro,krolKier,krolPik,krolTrefl,asKaro,asKier,asPik,asTrefl]
+Gracz1 = []
+GraczCPU = []
+Cmentarz = []
+def KartyGracza():                        # Tasuje karty do Gracz1
+    print("Twoja reka: ")
+    for i in range(5):
+        x = random.randint (0, len(Talia))
+        y = Talia[x]
+        Gracz1.append(y)
+        Talia.remove(y)
+        print(i + 1, end=") ")
+        y.print()
+def KartyKomputera():                       # Tasuje karty do GraczCPU
+    #print("Reka komputera")
+    for i in range(5):
+        x = random.randint(0, len(Talia))
+        z = Talia[x]
+        GraczCPU.append(z)
+        Talia.remove(z)
+
+
+
+       # Losuje pierwsza karte
+x = random.randint(13,37)
+PoprzedniaKarta = Talia[x]
+Talia.remove(PoprzedniaKarta)
+Cmentarz.append(PoprzedniaKarta)
+print("Pierwsza karta to: ")
+PoprzedniaKarta.print()
+
+
+KartyGracza()
+#print(Gracz1)
+KartyKomputera()
+#print(GraczCPU)
+#print(Cmentarz)
+
+
+while len(GraczCPU) > 0 or len(Gracz1) > 0:
+
+
+    if PoprzedniaKarta.numer == 2:
+        Wybor = int(input('Wpisz numer karty: '))
+        OlaZOpola = Wybor - 1
+        Monika = Wybor
+        k = Gracz1[OlaZOpola]
+        if k.numer == PoprzedniaKarta.numer:
+            Gracz1.remove(k)
+            Cmentarz.append(k)
+            PoprzedniaKarta = k
+        else:
+            for i in range(2):
+                dodaj = random.choice(Talia)
+                Talia.remove(dodaj)
+                Gracz1.append(dodaj)
+        if Monika == 0:
+            for i in range(2):
+                dodaj = random.choice(Talia)
+                Talia.remove(dodaj)
+                Gracz1.append(dodaj)
+
+    if PoprzedniaKarta.numer != 2:
+        Wybor = int(input('Wpisz numer karty: '))
+        OlaZOpola = Wybor - 1
+        Monika = Wybor
+        k = Gracz1[OlaZOpola]
+        if k.kolor == PoprzedniaKarta.kolor or k.numer == PoprzedniaKarta.numer:
+            Gracz1.remove(k)
+            Cmentarz.append(k)
+            PoprzedniaKarta = k
+
+        if Monika == 0:
+            dodaj = random.choice(Talia)
+            Talia.remove(dodaj)
+            Gracz1.append(dodaj)
+
+
+
+
+
+                                    ######################### TURA CPU ################################
+    if True:
+        if PoprzedniaKarta.numer == 2:                                                                              # Kiedy wystawisz karte z numerem 2
+            for i in range(len(GraczCPU)):
+                x = i
+                q = GraczCPU[x]
+                if q.numer == 2:
+                    GraczCPU.remove(q)
+                    Cmentarz.append(q)
+                    q, PoprzedniaKarta = PoprzedniaKarta, q
+                    break
+            else:
+                for i in range(2):
+                    o = random.randint(0, len(Talia))
+                    x = Talia[o]
+                    Talia.remove(x)
+                    GraczCPU.append(x)
+        if PoprzedniaKarta.numer != 2:
+            for i in range(len(GraczCPU)):
+                x = i
+                q = GraczCPU[x]
+                if q.kolor == PoprzedniaKarta.kolor or q.numer == PoprzedniaKarta.numer:                             # Komputer wyklada karte
+                    GraczCPU.remove(q)
+                    Cmentarz.append(q)
+                    q, PoprzedniaKarta = PoprzedniaKarta, q
+                    break
+            else:                                                                                                     # Komputer nie wyklada karty, dobiera
+                o = random.randint(0,len(Talia))
+                x = Talia[o]
+                Talia.remove(x)
+                GraczCPU.append(x)
+
+
+
+
+
+
+
+    if len(Talia) == 0:
+        Talia, Cmentarz = Cmentarz, Talia
+
+
+
+
+    print('Karta na stole to:')
+    PoprzedniaKarta.print()                                                                         # Koniec tury???
+    for i in range(len(Gracz1)):
+        x = Gracz1[i]
+        print(i + 1, end=") ")
+        x.print()
+        i = i + 1
+    print(GraczCPU)
+#    print(Cmentarz)
+
+    if len(GraczCPU) == 0:
+        print('Komputer wygral')
+        break
+    if len(Gracz1) == 0:
+        print('Gracz wygral')
+        break
